@@ -48,7 +48,7 @@ function addCallback(e) {
 		.then(result => {
 			if (result.retCode == "OK") {
 				alert('성공')
-				makeTr({ studentId: sid, studentName: sname, studentBirthday: sbirth })
+				let tr = makeTr({ studentId: sid, studentName: sname, studentBirthday: sbirth })
 				document.querySelector('#list').append(tr);
 			} else {
 				alert('실패')
@@ -62,10 +62,12 @@ function addCallback(e) {
 document.querySelector("#modBtn").addEventListener('click', modifyCallback);
 //수정버튼 이벤트
 function modifyCallback(e) {
-	let id = document.querySelector('input[name=sid]').value;
-	let name = document.querySelector('input[name=sname]').value;
-	let pass = document.querySelector('input[name=spass]').value;
-	let birth = document.querySelector('input[name=sbirth]').value;
+	console.log(e.target.parentElement)
+	console.log("this : "+ this)
+	let id = document.querySelector('input[name=id]').value;
+	let name = document.querySelector('input[name=name]').value;
+	let pass = document.querySelector('input[name=pass]').value;
+	let birth = document.querySelector('input[name=birth]').value;
 	let param = `id=${id}&name=${name}&password=${pass}&birthday=${birth}`;
 	console.log(param);
 
@@ -83,7 +85,7 @@ function modifyCallback(e) {
 				let targetTr = document.querySelector('tr[data-sid=' + result.vo.studentId +']')
 				let newTr = makeTr(result.vo);//옛Tr을 새Tr로 변경작업
 				let parentElem = document.querySelector('#list');
-				parentElem.replaceChild(newTr, targerTr);// tbody에서 자식요소들을 바꿀때 사용
+				parentElem.replaceChild(newTr, targetTr);// tbody에서 자식요소들을 바꿀때 사용
 				document.getElementById("myModal").style.display = 'none';
 			} else {
 				alert('실패');
@@ -110,8 +112,8 @@ function makeTr(obj) {
 	//모달 가져온거
 	function showModal(e) {
 		console.log(e.target.parentElement, this);
-		let id = this.children[0].innerHTML;
-		id = this.dataset.sid;// 'data-sid : std1' 아이디를 가져오는게 목적
+		let id = this.children[0].innerHTML;//방법1
+		id = this.dataset.sid;//방법2 'data-sid : std1' 아이디를 가져오는게 목적
 
 		fetch('../getStudent.do?id=' + id)
 			.then(resolve => resolve.json())//resolve를 json폼으로 바꿈

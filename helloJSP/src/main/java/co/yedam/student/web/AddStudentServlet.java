@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,12 +68,20 @@ public class AddStudentServlet extends HttpServlet {
 		
 		
 //		System.out.println(svc.addStudent(vo)); true값 나옴 ★★★★★;
+//		if() {
+//			//{"retCode" : "OK"}
+//			resp.getWriter().print("{\"retCode\" : \"OK\"}");
+//		}else {
+//			//{"retCode" : "NG"} 
+//			resp.getWriter().print("{\"retCode\" : \"NG\"} ");
+//		}
+		
+		Map<String, Object> map = new HashMap<>();
+
 		if(svc.addStudent(vo)) {
-			//{"retCode" : "OK"}
-			resp.getWriter().print("{\"retCode\" : \"OK\"}");
+			map.put("retCode", "OK");
 		}else {
-			//{"retCode" : "NG"} 
-			resp.getWriter().print("{\"retCode\" : \"NG\"} ");
+			map.put("retCode", "NG");
 		}
 		
 		//맵으로 해보고
@@ -80,7 +90,7 @@ public class AddStudentServlet extends HttpServlet {
 		
 		//json 문자열로 변경하기
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		String json = gson.toJson(svc.addStudent(vo));
+		String json = gson.toJson(map);
 
 		//getWriter : 클라이언트에 연결된 스트림에 출력되도록 함
 		PrintWriter out = resp.getWriter();

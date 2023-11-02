@@ -2,6 +2,7 @@ package co.yedam.student.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -53,10 +54,11 @@ public class StudentListServlet extends HttpServlet {
 		//학생정보 json 전송.
 		StudentService svc = new StudentServiceImpl();
 		List<StudentVO> list = svc.listStudent();
+	
 		//자바 객체를 json 문자열로 변경하기.
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(list); // list라는 자바객체를 json 문자열로 바꿔줍니당...
-		
+
 
 		PrintWriter out = resp.getWriter(); // 클라이언트에 연결된 스트림에 출력되도록함. - getWriter
 		out.println(json);

@@ -63,6 +63,11 @@ public class StudentDao {
 		conn = ds.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
+			System.out.println(vo.getStudentName());
+			System.out.println(vo.getStudentPassword());
+			System.out.println(vo.getStudentDept());
+			System.out.println(sdf.format(vo.getStudentBirthday()));
+			System.out.println(vo.getStudentId());
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getStudentName());
 			psmt.setString(2, vo.getStudentPassword());
@@ -70,6 +75,7 @@ public class StudentDao {
 			psmt.setString(4, sdf.format(vo.getStudentBirthday()));
 			psmt.setString(5, vo.getStudentId());
 			int r = psmt.executeUpdate();
+			System.out.println("업데이: "+ r);
 			return r;
 		} catch (SQLException e) {
 			e.printStackTrace();
