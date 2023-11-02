@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.student.service.StudentService;
 import co.yedam.student.serviceImpl.StudentServiceImpl;
 
+//학생한명 삭제
 @WebServlet({"/RemStudentServlet.do","/delStudent.do"}) // 두개 주소 중에 아무거나 쳐도 이 서블릿을 불러온다는 의미임
-
 public class RemStudentServlet extends HttpServlet{
 	
 

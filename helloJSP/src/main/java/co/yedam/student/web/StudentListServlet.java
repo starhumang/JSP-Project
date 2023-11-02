@@ -19,6 +19,7 @@ import co.yedam.student.service.StudentService;
 import co.yedam.student.service.StudentVO;
 import co.yedam.student.serviceImpl.StudentServiceImpl;
 
+//학생전체 조회
 @WebServlet("/studentList.do") // 이 주소 치면 실행됨.
 public class StudentListServlet extends HttpServlet {
 
@@ -36,13 +37,6 @@ public class StudentListServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Enumeration<String> enumer = req.getHeaderNames();
-		while(enumer.hasMoreElements()) {
-			String header = enumer.nextElement();
-			String val = req.getHeader(header);
-			System.out.println("header정보 결과값 반환 : " + header + "   :  " + val);
-			//System.out.println("header정보 : " + header);
-		}
 		
 		//★★ studentList.do?name=Hong&age=20  
 		String name = req.getParameter("name"); // => name에 담긴 파라매터 값 읽어들이겠다. - getParameter
@@ -60,7 +54,7 @@ public class StudentListServlet extends HttpServlet {
 		StudentService svc = new StudentServiceImpl();
 		List<StudentVO> list = svc.listStudent();
 		//자바 객체를 json 문자열로 변경하기.
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(list); // list라는 자바객체를 json 문자열로 바꿔줍니당...
 		
 

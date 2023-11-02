@@ -36,8 +36,7 @@ public class MainExe {
 		svc.listStudent()
 			.forEach(student -> System.out.println(student));
 		
-		
-		
+	
 		
 		
 		
