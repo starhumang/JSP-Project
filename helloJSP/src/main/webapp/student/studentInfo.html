@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>student/studentInfo.html</title>
+</head>
+
+<body>
+	<div id="show">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody id = "list">
+			</tbody>
+		</table>
+		
+	</div>
+	<script>
+		//페이지 로딩되면서 바로 실행
+		fetch('../studentList.do') //호출
+		.then(resolve=>resolve.json()) //studentlist json포맷으로
+		.then(result => {
+			console.log(result); //result 배열임.
+			let tbody = document.querySelector('#list');
+			
+			result.forEach(student => {
+				tbody.append(makeTr(student));
+			})
+		})
+		.catch(err => console.log('error =>', err))
+		
+		function makeTr(obj){
+			let showFields = ['studentId', 'studentName', 'studentBirthday']
+			let tr = document.createElement('tr');
+
+		 	for(let prop of showFields){
+				 let td = document.createElement('td');
+				 td.innerHTML = obj[prop];
+				 tr.append(td);
+				
+			 }
+			 
+			 //삭제버튼 만들기
+			  let td = document.createElement('td');
+			  let btn = document.createElement('button');
+			  btn.setAttribute('data-sid', obj.studentId);
+			  btn.innerHTML = '삭제'; // *버튼은 라벨 필요함! 
+			  btn.addEventListener('click', function(e){
+				  //ajax호출(버튼 클릭해야지) : 서버에 정보넘겨주고 처리한다는 의미 => servlet 실행! 
+				  fetch('../delStudent.do?sid='+obj.studentId)
+				  .then(resolve => resolve.json())
+				  .then(result => {
+					  console.log(result)
+					  if(result.retCode == "Ok"){
+						  alert("삭제성공");
+						  tr.remove();
+					  }else{
+						  alert("삭제실패");
+					  }
+				  })
+				  .catch(err=>console.log('error :', err));
+			  })
+			  td.append(btn);
+			  tr.append(td);
+			 
+			return tr;
+		}//maketr
+		
+		
+		
+		
+		
+	</script>
+</body>
+
+</html>
