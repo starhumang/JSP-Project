@@ -53,7 +53,6 @@ public class AddStudentServlet extends HttpServlet {
 				
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // simpledateformat : 데이트타입을 문자열로 바꾸어줄때
 		//(아무것도 없는 vo에 값 넣어주기)
-		System.out.println(vo.getStudentId());
 		
 		vo.setStudentId(id);
 		vo.setStudentName(name);
@@ -64,7 +63,9 @@ public class AddStudentServlet extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-//		System.out.println(svc.addStudent(vo)); true;
+		
+		
+//		System.out.println(svc.addStudent(vo)); true값 나옴 ★★★★★;
 		if(svc.addStudent(vo)) {
 			//{"retCode" : "OK"}
 			resp.getWriter().print("{\"retCode\" : \"OK\"}");
@@ -73,7 +74,8 @@ public class AddStudentServlet extends HttpServlet {
 			resp.getWriter().print("{\"retCode\" : \"NG\"} ");
 		}
 		
-		
+		//맵으로 해보고
+		//위에 정보가 제대로 넘어왔는지 찍어보고
 		
 		
 		//json 문자열로 변경하기
