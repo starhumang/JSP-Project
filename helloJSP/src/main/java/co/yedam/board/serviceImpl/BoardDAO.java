@@ -92,19 +92,14 @@ public class BoardDAO {
 	
 	
 	public int insert(BoardVO vo) {
-		sql = "insert into board values(?,?,?,?,?,0,?,?)";
+		sql = "insert into board(board_no, title, content, writer values(seq_board.nextval,?,?,?)";
 		conn = ds.getConnection();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		int r = 0;
 		try {
 			psmt= conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getBoardNo());
-			psmt.setString(2, vo.getTitle());
-			psmt.setString(3, vo.getContent());
-			psmt.setString(4, vo.getWriter());
-			psmt.setString(5, sdf.format(vo.getWriteDate()));
-			psmt.setString(6, vo.getImage());
-			psmt.setString(7, sdf.format(vo.getLastUpdate()));
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getWriter());
 			r = psmt.executeUpdate();
 
 			}catch(Exception e) {
@@ -140,7 +135,6 @@ public class BoardDAO {
 		sql = "delete from board where board_no =?";
 		int r =0;
 		conn = ds.getConnection();
-		BoardVO vo = new BoardVO();
 		try {
 			psmt=conn.prepareStatement(sql);
 			psmt.setInt(1, num);
@@ -152,6 +146,25 @@ public class BoardDAO {
 			close();
 		}
 		return r;
+	}
+	
+	
+	//조회수 증가
+	public int updateCnt(int boardNo) {
+		sql = "update board set view_cnt=view_cnt+1 where board_no=?";
+		int r =0;
+		conn = ds.getConnection();
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, boardNo);
+			r= psmt.executeUpdate();
+			return r;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return 0;
 	}
 
 }// end of boardDAO

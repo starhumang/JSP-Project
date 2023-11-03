@@ -14,41 +14,33 @@
 	<table border=1>
 		<tr>
 		<th>글번호</th>
-		<td>
-			<%=vo.getBoardNo()%>
-		</td>
+		<td><%=vo.getBoardNo()%></td>
 		<th>작성일시</th>
-		<td>
-			<%=vo.getWriteDate()%>
-		</td>
+		<td><%=vo.getWriteDate()%></td>
 		</tr>
 		
 		
 		<tr>
 		<th>글제목</th>
-		<td colspan="3">
-			<%=vo.getTitle()%>
-		</td>
+		<td colspan="3"><%=vo.getTitle()%></td>
 		</tr>
 		
 		
 		<tr>
-		<td colsan="4"><textarea rows ="5" cols="40"><%=vo.getContent()%></textarea></td>
+		<td colspan="4"><textarea rows ="5" cols="40"><%=vo.getContent()%></textarea></td>
 		</tr>
 
 
 		<tr>
 		<th>작성자</th>
-		<td>
-			<%=vo.getWriter()%>
-		</td>
+		<td><%=vo.getWriter()%></td>
 		<th>조회수</th>
-		<td>
-			<%=vo.getViewCnt()%>
-		</td>
+		<td><%=vo.getViewCnt()%></td>
 		</tr>
 		
+		
 	</table>
+	<p><a href="boardList.do">목록으로</a>
 
 </body>
 </html>

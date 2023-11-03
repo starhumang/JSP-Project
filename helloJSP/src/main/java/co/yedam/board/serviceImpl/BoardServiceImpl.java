@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoard(int boardNo) {
-	
+		dao.updateCnt(boardNo);//여기서 수량 1씩 증가
 		return dao.select(boardNo);
 	}
 

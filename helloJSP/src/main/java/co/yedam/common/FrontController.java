@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.board.web.AddBoardControl;
+import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.GetBoardControl;
 //모든 요청, 실행은 여기서
@@ -22,7 +24,8 @@ public class FrontController extends HttpServlet{
 	public void init() throws ServletException {
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
-		
+		map.put("/boardForm.do", new BoardFormControl());//화면만 열어준다
+		map.put("/addBoard.do", new AddBoardControl());
 		
 		//아래는 연습용
 //		map.put("/FirstServlet.do", new FirstControl());
