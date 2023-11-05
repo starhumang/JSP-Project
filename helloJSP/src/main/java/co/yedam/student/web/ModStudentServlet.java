@@ -31,7 +31,10 @@ public class ModStudentServlet extends HttpServlet {
 		StudentService svc = new StudentServiceImpl();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/json;charset=utf-8");
 		req.setCharacterEncoding("utf-8");
+		
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
 		String pass = req.getParameter("password");

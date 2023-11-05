@@ -46,7 +46,7 @@ public class GetStudentServlet extends HttpServlet {
 		// 화면에 출력
 		PrintWriter out = resp.getWriter();
 
-		if (svc.getStudent(id) == null) {
+		if (vo == null) {
 			map.put("retCode", "NG");
 		} else {
 			map.put("retCode", "OK");

@@ -17,7 +17,7 @@
 	 
 	 //단건 조회기능.
 	 async getStudent(id, successCallback, errorCallback){//넘겨줄 파라미터, 성공시 실행할 함수, 에러시 실행할 함수
-		 let req = await fetch('../getStudent.do?id=', id);
+		 let req = await fetch('../getStudent.do?id='+ id);
 		 let json = await req.json();
 		 try{
 			 successCallback(json);
@@ -53,7 +53,7 @@
 	 
 	 //삭제기능
 	 async removeStudent(id, successCallback, errorCallback){//넘겨줄 파라미터, 성공시 실행할 함수, 에러시 실행할 함수
-		 let req = await fetch('../delStudent.do?sid=', id);
+		 let req = await fetch('../delStudent.do?sid='+ id);
 		 let json = await req.json();
 		 try{
 			 successCallback(json);

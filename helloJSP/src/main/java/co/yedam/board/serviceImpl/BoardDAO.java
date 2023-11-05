@@ -78,7 +78,7 @@ public class BoardDAO {
 				vo.setLastUpdate(rs.getDate("last_update"));
 				vo.setTitle(rs.getString("title"));
 				vo.setViewCnt(rs.getInt("view_cnt"));
-				vo.setWriteDate(rs.getDate("writeDate"));
+				vo.setWriteDate(rs.getDate("write_Date"));
 				vo.setWriter(rs.getString("writer"));
 			}
 
@@ -92,7 +92,7 @@ public class BoardDAO {
 	
 	
 	public int insert(BoardVO vo) {
-		sql = "insert into board(board_no, title, content, writer values(seq_board.nextval,?,?,?)";
+		sql = "insert into board(board_no, title, content, writer) values(seq_board.nextval,?,?,?)";
 		conn = ds.getConnection();
 		int r = 0;
 		try {
