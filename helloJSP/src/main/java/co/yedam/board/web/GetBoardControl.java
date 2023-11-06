@@ -16,7 +16,7 @@ public class GetBoardControl implements Command {
 		String bno = req.getParameter("bno");
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
-		
+	
 		req.setAttribute("bno", vo);
 		
 		try {

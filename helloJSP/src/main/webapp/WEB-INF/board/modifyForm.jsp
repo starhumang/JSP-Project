@@ -1,6 +1,9 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../layout/menu.jsp"%>
+<%@include file="../layout/header.jsp"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
 <h3>게시글 수정화면</h3>
 	<form action="modifyBoard.do" method="post">
 		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
-		<table border="1">
+		<table border="1" class ="table">
 			<tr>
 				<th>제목</th>
 				<td><input type ="text" name="title" value="<%=vo.getTitle()%>"></td>
@@ -28,7 +31,7 @@
 			</tr>
 			
 			<tr>
-				<td colspan ="2"><textarea cols="40" rows="5" name="content"><%=vo.getContent()%></textarea></td>
+				<td colspan ="2"><textarea cols="40" rows="5" name="content" class = "form-control"><%=vo.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th>파일명</th>
@@ -46,3 +49,4 @@
 
 </body>
 </html>
+<%@include file="../layout/footer.jsp"%>

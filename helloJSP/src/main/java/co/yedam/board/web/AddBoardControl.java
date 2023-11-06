@@ -35,6 +35,7 @@ public class AddBoardControl implements Command {
 		} else if (req.getMethod().equals("POST")) {
 			//가장쉽게 파일 업로드할 수 있는 방법
 			String saveDir = req.getServletContext().getRealPath("image");
+			System.out.println("saveDir :: 0 + 0" + saveDir);
 			int size = 5 * 1024 *1024;
 			//MultipartRequest mr;
 			try {

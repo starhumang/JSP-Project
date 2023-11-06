@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<%//@page import="co.yedam.board.service.MemberVO"%>
-<%//@page import="java.util.List"%>
+<%@page import="co.yedam.board.service.MemberVO"%>
+<%@page import="java.util.List"%>
 
 
 <!DOCTYPE html>
@@ -53,11 +53,8 @@
                     	}
                     %>
                     <!-- 관리자 권한일 경우 -->
-                    <% 
-            		//List<MemberVO> list = (List<MemberVO>) request.getAttribute("list");
-                    //if(list.getrespon == "Admin"){ %>
+
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원관리</a>
-                    <%// } %>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>

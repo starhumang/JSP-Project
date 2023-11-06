@@ -20,12 +20,13 @@ public class ModifyBoardControl implements Command {
 		String title = req.getParameter("title");
 		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
-		String bno =req.getParameter("bno");
+		String bno = req.getParameter("bno");
 		
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setWriter(writer);
+		vo.setBoardNo(Integer.parseInt(bno));
 		
 		BoardService svc = new BoardServiceImpl();
 		//2. 데이터 수정

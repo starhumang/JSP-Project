@@ -49,7 +49,7 @@ public class FrontController extends HttpServlet{
 		//삭제화면
 		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
-		
+		System.out.println("init_");
 		//관리자 유저목록 조회
 		map.put("/memberList.do", new memberListControl());
 		
@@ -73,7 +73,7 @@ public class FrontController extends HttpServlet{
 		String context = req.getServletContext().getContextPath(); //helloJSP 위의 주소에서 현 프로젝트 이름을 가져와 줌.
 		String page = uri.substring(context.length());
 		System.out.println(page);
-		
+		System.out.println("service");
 		Command controller = map.get(page);//controller실제 구현한 뭐시기의 부모..
 		controller.execute(req, resp);
 		

@@ -38,7 +38,7 @@
 			%>
 		</tbody>
 	</table>
-	<p><a herf="main.do">메인으로 돌아가기</a>
+	<p><a href="main.do">메인으로 돌아가기</a></p>
 </body>
 </html>
 <%@include file="../layout/footer.jsp"%>

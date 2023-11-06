@@ -15,6 +15,6 @@ public interface BoardService {
 	public boolean loginCheck(String id, String pw);
 	
 	//관리자 목록보기
-	public List<MemberVO> memberList(MemberVO mv);
+	public List<MemberVO> memberList();
 	
 }

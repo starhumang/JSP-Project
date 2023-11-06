@@ -174,9 +174,9 @@ public class BoardDAO {
 			psmt.setString(1, id);
 			psmt.setString(2, pw);
 			rs = psmt.executeQuery();
-			System.out.println("rs.next()" + rs.next());
-			System.out.println(psmt);
-			if (rs.next()) {
+			boolean result = rs.next();
+			System.out.println("rs.next()" + result);
+			if (result) {
 				System.out.println("성공");//안뜸
 				return true;
 			}

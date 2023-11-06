@@ -1,8 +1,8 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@include file="../layout/menu.jsp"%>
-	<%@include file="../layout/header.jsp"%>
+<%@include file="../layout/menu.jsp"%>
+<%@include file="../layout/header.jsp"%>
 	
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 	
 	<form action ="modifyForm.do" name="myFrm">
 	<input type="hidden" name="bno" value="<%=vo.getBoardNo() %>">
-		<table border="1">
+		<table class = "table" border="1">
 			<tr>
 			<th>글번호</th>
 			<td><%=vo.getBoardNo()%></td>
@@ -33,7 +33,7 @@
 			
 			
 			<tr>
-			<td colspan="4"><textarea rows ="5" cols="40"><%=vo.getContent()%></textarea></td>
+			<td colspan="4"><textarea rows ="5" cols="40" class = "form-control"><%=vo.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th>이미지</th>

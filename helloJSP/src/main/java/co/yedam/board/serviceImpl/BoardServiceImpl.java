@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getUser(id, pw);
 	}
 	@Override
-	public List<MemberVO> memberList(MemberVO mv) {
+	public List<MemberVO> memberList() {
 		// TODO Auto-generated method stub
 		return dao.selectMemList();
 }

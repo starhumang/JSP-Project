@@ -17,7 +17,7 @@
 </tr>
 
 <tr>
-<td colspan"2"><input type ="submit" class= "btn btn-primary" value="로그인"></td>
+<td colspan="2"><input type ="submit" class= "btn btn-primary" value="로그인"></td>
 </tr>
 
 </table>
