@@ -6,6 +6,7 @@ import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 import co.yedam.board.service.BoardService;
 import co.yedam.board.service.BoardVO;
+import co.yedam.board.service.MemberVO;
 
 public class BoardServiceImpl implements BoardService {
 	BoardDAO dao = new BoardDAO();
@@ -39,5 +40,16 @@ public class BoardServiceImpl implements BoardService {
 		
 		return dao.delete(boardNo) == 1;
 	}
+	
+	@Override
+	public boolean loginCheck(String id, String pw) {
+		return dao.getUser(id, pw);
+	}
+	@Override
+	public List<MemberVO> memberList(MemberVO mv) {
+		// TODO Auto-generated method stub
+		return dao.selectMemList();
+}
+
 
 }

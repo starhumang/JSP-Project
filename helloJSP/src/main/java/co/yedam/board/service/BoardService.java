@@ -9,4 +9,12 @@ public interface BoardService {
 	public boolean addBoard(BoardVO vo); //true or false 값으로 가져옴
 	public boolean editBoard(BoardVO vo); //true or false 값으로 가져옴
 	public boolean removeBoard(int boardNo);//책번호 적으면 해당 내용 삭제
+	
+	
+	//로그인처리.
+	public boolean loginCheck(String id, String pw);
+	
+	//관리자 목록보기
+	public List<MemberVO> memberList(MemberVO mv);
+	
 }

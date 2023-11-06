@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import co.yedam.board.service.BoardVO;
+import co.yedam.board.service.MemberVO;
 import co.yedam.common.DataSource;
 
 public class BoardDAO {
@@ -84,39 +84,38 @@ public class BoardDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return vo;
-	}	
-	
-	
+	}
+
 	public int insert(BoardVO vo) {
-		sql = "insert into board(board_no, title, content, writer) values(seq_board.nextval,?,?,?)";
+		sql = "insert into board(board_no, title, content, writer, image) values(seq_board.nextval,?,?,?,?)";
 		conn = ds.getConnection();
 		int r = 0;
 		try {
-			psmt= conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getWriter());
+			psmt.setString(4, vo.getImage());
 			r = psmt.executeUpdate();
 
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return r;
 	}
-	
-	
+
 	public int update(BoardVO vo) {
-		sql = "update board set content=?, image=nvl(?,image), last_update=sysdate, title=?,where board_no=?";
+		sql = "update board set content=?, image=nvl(?,image), last_update=sysdate, title=? where board_no=?";
 		conn = ds.getConnection();
 		int r = 0;
 		try {
-			psmt= conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getContent());
 			psmt.setString(2, vo.getImage());
 			psmt.setString(3, vo.getTitle());
@@ -124,49 +123,98 @@ public class BoardDAO {
 			r = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			close();
 		}
 		return r;
 	}
-		
-	
+
 	public int delete(int num) {
 		sql = "delete from board where board_no =?";
-		int r =0;
+		int r = 0;
 		conn = ds.getConnection();
 		try {
-			psmt=conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, num);
-			r= psmt.executeUpdate();
-			
+			r = psmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return r;
 	}
-	
-	
-	//조회수 증가
+
+	// 조회수 증가
 	public int updateCnt(int boardNo) {
 		sql = "update board set view_cnt=view_cnt+1 where board_no=?";
-		int r =0;
+		int r = 0;
 		conn = ds.getConnection();
 		try {
-			psmt=conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, boardNo);
-			r= psmt.executeUpdate();
+			r = psmt.executeUpdate();
 			return r;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return 0;
 	}
 
+	// 아이디랑 비번을 받아 조회값을 boolean으로
+	public boolean getUser(String id, String pw) {
+		System.out.println(id+","+pw);
+		sql = "SELECT* FROM MEMBER WHERE MID=? AND PASS=?";
+		conn = ds.getConnection();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			rs = psmt.executeQuery();
+			System.out.println("rs.next()" + rs.next());
+			System.out.println(psmt);
+			if (rs.next()) {
+				System.out.println("성공");//안뜸
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
+	}
+	
+	
+	//관리자가 전체 유저 리스트 볼 수 있게 하는 것 memberVO타입으로 만들기(아이디, 이름, 패스워드, 권한정보, 등)
+	public List<MemberVO> selectMemList(){
+		List<MemberVO> list = new ArrayList<>();
+		sql = "SELECT* FROM MEMBER ORDER BY MID";
+		conn = ds.getConnection();
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				MemberVO mv = new MemberVO();
+				mv.setMid(rs.getString("MID"));
+				mv.setPass(rs.getString("PASS"));
+				mv.setName(rs.getString("NAME"));
+				mv.setPhone(rs.getString("PHONE"));
+				mv.setRespon(rs.getString("RESPONSIBILITY"));
+				list.add(mv);
+		}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
+
 }// end of boardDAO
-
-

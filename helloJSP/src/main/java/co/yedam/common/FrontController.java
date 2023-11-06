@@ -14,6 +14,10 @@ import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.GetBoardControl;
+import co.yedam.board.web.ModifyBoardControl;
+import co.yedam.board.web.ModifyFormControl;
+import co.yedam.board.web.RemoveBoardControl;
+import co.yedam.board.web.RemoveFormControl;
 //모든 요청, 실행은 여기서
 public class FrontController extends HttpServlet{
 	
@@ -22,10 +26,32 @@ public class FrontController extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
+		//메인 페이지
+		map.put("/main.do", new MainControl());
+		
+		//로그인&로그아웃
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
+		
+		//목록화면
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
+		
+		//등록화면
 		map.put("/boardForm.do", new BoardFormControl());//화면만 열어준다
 		map.put("/addBoard.do", new AddBoardControl());
+		
+		//수정화면
+		map.put("/modifyForm.do", new ModifyFormControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		
+		//삭제화면
+		map.put("/removeForm.do", new RemoveFormControl());
+		map.put("/removeBoard.do", new RemoveBoardControl());
+		
+		//관리자 유저목록 조회
+		map.put("/memberList.do", new memberListControl());
 		
 		//아래는 연습용
 //		map.put("/FirstServlet.do", new FirstControl());
@@ -37,7 +63,11 @@ public class FrontController extends HttpServlet{
 	//항상 실행되는 서블릿
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("FrontController");
+		//요청정보의 한글 인코딩 방식
+		req.setCharacterEncoding("UTF-8");
+//		System.out.println("FrontController");
+		
+		
 		//사용자가 어떤 페이지를 요청했는지 보여주는 것
 		String uri = req.getRequestURI();// http://localhost:8080/helloJSP/??.do
 		String context = req.getServletContext().getContextPath(); //helloJSP 위의 주소에서 현 프로젝트 이름을 가져와 줌.
