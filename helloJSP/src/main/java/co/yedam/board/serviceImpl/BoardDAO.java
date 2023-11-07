@@ -204,7 +204,7 @@ public class BoardDAO {
 				mv.setPass(rs.getString("PASS"));
 				mv.setName(rs.getString("NAME"));
 				mv.setPhone(rs.getString("PHONE"));
-				mv.setRespon(rs.getString("RESPONSIBILITY"));
+				mv.setResponsibility(rs.getString("RESPONSIBILITY"));
 				list.add(mv);
 		}
 			

@@ -8,6 +8,7 @@ private String phone;
 private String respon;
 
 
+
 public String getMid() {
 	return mid;
 }
@@ -35,7 +36,7 @@ public void setPhone(String phone) {
 public String getRespon() {
 	return respon;
 }
-public void setRespon(String respon) {
+public void setResponsibility(String respon) {
 	this.respon = respon;
 }
 }

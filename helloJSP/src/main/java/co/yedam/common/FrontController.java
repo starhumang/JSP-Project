@@ -18,6 +18,8 @@ import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyFormControl;
 import co.yedam.board.web.RemoveBoardControl;
 import co.yedam.board.web.RemoveFormControl;
+import co.yedam.reply.web.AddReplyControl;
+import co.yedam.reply.web.ReplyListControl;
 //모든 요청, 실행은 여기서
 public class FrontController extends HttpServlet{
 	
@@ -50,8 +52,14 @@ public class FrontController extends HttpServlet{
 		map.put("/removeForm.do", new RemoveFormControl());
 		map.put("/removeBoard.do", new RemoveBoardControl());
 		System.out.println("init_");
+		
 		//관리자 유저목록 조회
 		map.put("/memberList.do", new memberListControl());
+		
+		
+		//댓글목록
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/addReply.do", new AddReplyControl());
 		
 		//아래는 연습용
 //		map.put("/FirstServlet.do", new FirstControl());
@@ -72,8 +80,7 @@ public class FrontController extends HttpServlet{
 		String uri = req.getRequestURI();// http://localhost:8080/helloJSP/??.do
 		String context = req.getServletContext().getContextPath(); //helloJSP 위의 주소에서 현 프로젝트 이름을 가져와 줌.
 		String page = uri.substring(context.length());
-		System.out.println(page);
-		System.out.println("service");
+		System.out.println("page : "+ page);
 		Command controller = map.get(page);//controller실제 구현한 뭐시기의 부모..
 		controller.execute(req, resp);
 		
