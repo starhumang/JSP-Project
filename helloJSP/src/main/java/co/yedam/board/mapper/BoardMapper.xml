@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.board.mapper.BoardMapper">
+<!-- BoardMapper.java 클래스보고 하기 -->
+<!-- public int(얘가 파라미터 타입) delete(int boardNo)(얘가 리절트타입); -->
+
+
+<!-- 전체 목록 보기 -->
+  <select id="selectList" resultType="co.yedam.board.service.BoardVO">
+    SELECT * FROM BOARD ORDER BY BOARD_NO
+  </select>
+  
+  
+  <!-- 한명 조회 -->
+  <select id="select" resultType="co.yedam.board.service.BoardVO"
+  						parameterType="int">
+  	select * from board where board_no =#{boardNo}
+  	<!-- 물음표는 #으로 변환 -->
+  </select>
+  
+  
+  <!-- 조회수 -->
+  <update id="updateCnt" parameterType="int">
+  <!-- 아이디는 해당 메소드 이름 -->
+  <!-- 결과적으로 넘어가는 값의 파라미터타입 입력해야함 -->
+  	update board set view_cnt=view_cnt+1 where board_no=#{boardNo}
+  </update>
+  
+  <!-- insert, update, delete는 기본 반환값(resulttype이 int라서 안 적어줘도 됨 -->
+  <!-- 글 등록 -->
+  <insert id="insert" parameterType="co.yedam.board.service.BoardVO">
+  insert into board(board_no, title, content, writer, image)
+  		 values(seq_board.nextval,#{title},#{content},#{writer},#{image})
+  </insert>
+  
+  
+  <!-- 글 수정 -->
+  <update id ="update" parameterType="co.yedam.board.service.BoardVO">
+  update board set content=#{content}, image=nvl(#{image},image),
+  				 last_update=sysdate, title=#{title} where board_no=#{boardNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  delete from board where board_no =#{boardNo}
+  </delete>
+  
+  <!-- 파라미터가 2개인 경우에는 @Param을 사용. -->
+  <select id="getuser" 
+  resultType="co.yedam.board.service.MemberVO">
+  SELECT* FROM MEMBER WHERE MID=#{id} AND PASS=#{pw}
+  </select>
+  
+  <select id="selectMemList" resultType="co.yedam.board.service.MemberVO">
+  SELECT* FROM MEMBER ORDER BY MID
+  </select>
+  
+  
+  
+</mapper>

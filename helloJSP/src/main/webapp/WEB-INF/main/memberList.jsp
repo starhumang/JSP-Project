@@ -8,7 +8,7 @@
 	<h3>가입한 유저목록</h3>
 	<%
 		List<MemberVO> list = (List<MemberVO>) request.getAttribute("list");
-		//어디서 어떤 정보를 어떻게 받아오는가
+		
 		System.out.println(list);
 	%>
 	

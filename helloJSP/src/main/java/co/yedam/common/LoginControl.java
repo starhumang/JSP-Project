@@ -20,7 +20,7 @@ public class LoginControl implements Command {
 		// session : 서버-클라이언트(세션에 아이디 값을 담아놔서 창을 닫지 않는 한 계속 유지됨)
 
 		BoardService svc = new BoardServiceImpl();
-		if (svc.loginCheck(id,pw)) {
+		if (svc.loginCheck(id,pw) != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("logId", id);
 			try {

@@ -25,15 +25,23 @@ public class memberListControl implements Command {
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("logId");
 		
+		boolean responsibilityCheck = false;
+		
+		
 		for (MemberVO vo : list) {
 			if(vo.getMid().equals(userId) && vo.getRespon().equals("Admin")){
+				responsibilityCheck = true;
+				//로그인 한 사람의 권한이 Admin일 경우 true;
+			}
+		}
+		
+		if(responsibilityCheck) {	//true인 경우		
 				try {
-					//왜 아래의 것을 적는가
 					req.getRequestDispatcher(path).forward(req, resp);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
-			}else {
+			}else { //false인 경우
 				try {
 					resp.sendRedirect("main.do");
 				} catch (Exception e) {
@@ -45,4 +53,5 @@ public class memberListControl implements Command {
 
 	}
 
-}
+
+
