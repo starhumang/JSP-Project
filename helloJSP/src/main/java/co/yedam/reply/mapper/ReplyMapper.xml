@@ -24,7 +24,7 @@
   </selectKey>
  
  	insert into reply (reply_no, board_no, reply, replyer, reply_date)
- 	values(seq_reply.nextval, #{board_no}, #{reply}, #{replyer} #{replyDate})
+ 	values(#{replyNo}, #{boardNo}, #{reply}, #{replyer}, #{replyDate})
  </insert>
  
   <!-- 댓글 수정 -->

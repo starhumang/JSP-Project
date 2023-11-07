@@ -33,12 +33,12 @@ public class AddReplyControl implements Command {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
 		Map<String, Object> map = new HashMap<>();
-		
 		ReplyService svc = new ReplyServiceImpl();
-		System.out.println("svc.addReply(vo) : "+svc.addReply(vo));
+
 		if(svc.addReply(vo)) {
 			map.put("retCode", "OK");
 			map.put("vo", vo);
+			System.out.println("vo : "+ vo);
 		}else {
 			map.put("retCode", "NG");
 		}
@@ -48,7 +48,7 @@ public class AddReplyControl implements Command {
 			resp.getWriter().print(gson.toJson(map));
 		} catch (Exception e) {
 			e.printStackTrace();
-		} {
+		} {//getBoard의 .then의(resolve)로 넘어감
 		
 		
 	}

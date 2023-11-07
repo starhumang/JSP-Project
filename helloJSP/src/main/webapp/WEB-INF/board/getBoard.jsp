@@ -77,7 +77,12 @@
 	
 	<h3>댓글목록</h3>
 	<ul id="list">
-	 <li id="template" style= "display : none;" ><span>00</span><b>첫번째글입니다.</b><span>user01</span><span>2023.10.10</span><button>삭제</button></li>
+	 <li id="template" style= "display : none;" >
+	 <span>00</span><b>첫번째글입니다.</b>
+	 <span>user01</span>
+	 <span>2023.10.10</span>
+	 <button>삭제</button>
+	 </li>
 	
 	<!-- 이렇게 만들거임-->
 	</ul>
@@ -142,6 +147,7 @@
 			let temp = document.querySelector("#template").cloneNode(true);//cloneNode(복제해서 새로운 요소를 만듦)
 			temp.style.display = 'block';
 			console.log(temp);
+			console.log("replyNo : ", reply.replyNo)
 			temp.querySelector('span:nth-of-type(1)').innerHTML = reply.replyNo; //pk번호
 			temp.querySelector('b').innerHTML = reply.reply; // 내용
 			temp.querySelector('span:nth-of-type(2)').innerHTML = reply.replyer; //작성자
