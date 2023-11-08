@@ -140,10 +140,10 @@ ${bno }
 		
 		//댓글목록.
 		//방법1 
-		let bno = "${bno.boardNo }>";
+		let bno = "${bno.boardNo }";
 		//방법2
 		//bno = document.querySelector('.boardNo').innerHTML;
-		let writer = "${logId }>";
+		let writer = "${logId }";
 		let page = 1;
 		
 function showList(pg = 1){//page라는 값이 없으면 초기값으로 1을 주겠다.
@@ -160,10 +160,6 @@ function showList(pg = 1){//page라는 값이 없으면 초기값으로 1을 주
 				showList(page);
 				return;
 				
-				/* //현아쓰
-				let page = showList(Math.ceil(result.dto.total/5))
-				showList(page);
-				return; */
 			}
 			result.list.forEach(reply => {
 				let li = makeRow(reply);
