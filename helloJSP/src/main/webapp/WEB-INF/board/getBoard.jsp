@@ -13,7 +13,7 @@
 	}
 
 	.pagination {
-		display: inline-block;
+/* 		display: inline-block; */
 	}
 
 	.pagination a {
@@ -32,25 +32,6 @@
 		background-color: #ddd;
 	}
 
-	.pagination {
-		display: inline-block;
-	}
-
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-	}
-
-	.pagination a.active {
-		background-color: #4CAF50;
-		color: white;
-	}
-
-	.pagination a:hover:not(.active) {
-		background-color: #ddd;
-	}
 </style>
 
 
@@ -162,13 +143,7 @@
 			.then(resolve => resolve.json())
 			.then(result => {
 				console.log(result);
-				if (result.dto.total < 1) {
-					let nothing = document.createElement('p');
-					nothing.innerHTML = "아직 댓글이 달리지 않았습니다.";
-					document.querySelector('.pagination').append(nothing);
-				}
-				
-				
+				page = result.dto.currentPage;
 				
 				if (pg < 0) {//마지막페이지에 댓글 넣는 기능
 					page = Math.ceil(result.dto.total / 5);
@@ -191,7 +166,17 @@
 
 	//페이지링크 생성.
 	function makePaging(dto = {}) {
-		document.querySelector('.pagination').innerHTML = '';
+		if (dto.total < 1) {
+			console.log("if")
+			let nothing = document.createElement('p');
+			nothing.innerHTML = "아직 댓글이 달리지 않았습니다.";
+			document.querySelector('.pagination').append(nothing);
+			
+		}else{
+			document.querySelector('.pagination').innerHTML = '';
+		}
+		
+		
 		// 			if(result.dto.total)
 		if (dto.prev) {
 			let aTag = document.createElement('a');
@@ -262,7 +247,7 @@
 
 	//함수
 	function makeRow(reply) {
-
+		console.log("makeRow(reply) : ", reply)
 
 		function deleteCallback(e) { //이벤트가 들어감
 			console.log(e.target.parentElement) //이벤트 받는 대상의 상위요소
@@ -279,6 +264,7 @@
 					if (result.retCode == 'OK') {
 						alert('Success!')
 						e.target.parentElement.remove();
+						showList(page);
 					} else {
 						alert('Error!');
 					}

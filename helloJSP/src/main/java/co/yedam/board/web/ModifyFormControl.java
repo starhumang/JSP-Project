@@ -19,6 +19,7 @@ public class ModifyFormControl implements Command {
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
 		req.setAttribute("vo", vo);
 		
+		
 		try {
 			req.getRequestDispatcher("WEB-INF/board/modifyForm.jsp")//
 									.forward(req, resp);

@@ -21,7 +21,7 @@ public class memberListControl implements Command {
 		
 		req.setAttribute("list", list);
 		String path = "WEB-INF/main/memberList.jsp";
-		
+
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("logId");
 		

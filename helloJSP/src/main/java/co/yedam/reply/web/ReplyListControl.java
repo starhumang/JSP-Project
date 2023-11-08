@@ -31,7 +31,9 @@ public class ReplyListControl implements Command {
 		PageDTO dto = new PageDTO(Integer.parseInt(bno),//
 						svc.getTotalCnt(Integer.parseInt(bno)),//
 						Integer.parseInt(page));
-		
+		if(Integer.parseInt(page) > dto.getCurrentPage()) {
+			page = String.valueOf(dto.getCurrentPage());
+		}
 		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno), Integer.parseInt(page));
 		System.out.println(list);
 		//list랑 dto같이 넘기기

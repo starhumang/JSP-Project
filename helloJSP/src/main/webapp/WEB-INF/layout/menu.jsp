@@ -26,7 +26,7 @@
                     <div class="sidebar-heading border-bottom bg-light">(Guest) 입니다.</div>
                 </c:when>
                 <c:otherwise>
-                    <div class="sidebar-heading border-bottom bg-light">(${logId }) 환영합니다. ${responsbility }</div>
+                    <div class="sidebar-heading border-bottom bg-light">(${logId }) 환영합니다. ${responsibility }</div>
                 </c:otherwise>
             </c:choose>
 
@@ -41,7 +41,7 @@
                     </c:otherwise>
                 </c:choose>
                 <!-- 관리자 권한일 경우. -->
-                <c:if test="${!empty responsbility && responsbility == 'Admin' }">
+                <c:if test="${!empty responsibility && responsibility == 'Admin' }">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원관리</a>
                 </c:if>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>

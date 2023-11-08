@@ -26,14 +26,15 @@
 			</tr>
 		</thead>
 		<tbody>
-
+<!-- 			for(MemberVO vo : list) { --> 
+<!-- 				아래는 이것과 동일함	} -->
 			<c:forEach items="${list }" var="member">
 			<tr>
 				<td>${member.mid }</td>
-				<td>${member.pass }
+				<td>${member.pass }</td>
 				<td>${member.name }</td>
 				<td>${member.phone }</td>
-				<td>${member.responsibility }</td>
+				<td>${member.respon }</td>
 				
 			</tr>		
 			</c:forEach>
