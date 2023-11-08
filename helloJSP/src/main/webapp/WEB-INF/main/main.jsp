@@ -11,4 +11,4 @@
  <p class="m-0 text-center text-black">첫페이지입니다.</p>
   </div>
   
-<%@include file="../layout/footer.jsp"%>
+<include page="../layout/footer.jsp"></include>

@@ -1,6 +1,7 @@
 package co.yedam.reply.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -16,5 +17,6 @@ public interface ReplyMapper {
 	public int deleteReply(int replyNo);//삭제
 	
 	public int getTotalCnt(int boardNo);
+	public List<Map<String, Object>> getReplyCountByWriter();
 	
 }

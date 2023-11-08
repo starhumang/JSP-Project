@@ -1,6 +1,7 @@
 package co.yedam.reply.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ReplyService {
 	//목록, 단건, 조회
@@ -12,6 +13,9 @@ public interface ReplyService {
 	
 	//댓글건수
 	public int getTotalCnt(int boardNo);
+	
+	//차트데이터
+	public List<Map<String, Object>> getReplyCountByWriter();
 	
 	
 	//조회 후 바로 등록 등과 같은 이중기능을 위해 ReplyMapper와 ReplyService가 비슷한 모양을 하고 있다.

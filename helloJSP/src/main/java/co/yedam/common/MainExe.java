@@ -1,6 +1,7 @@
 package co.yedam.common;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -15,6 +16,10 @@ public class MainExe {
 		
 		List<ReplyVO> list = mapper.replyList(2,1); //2번글에 첫번째 답글 보겠습니다.
 		list.forEach(vo -> System.out.println(vo));
+		
+		List<Map<String, Object>> map = mapper.getReplyCountByWriter();
+		System.out.println(map);
+		
 		
 	
 		

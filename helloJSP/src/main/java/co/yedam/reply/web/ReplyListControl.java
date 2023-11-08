@@ -33,7 +33,7 @@ public class ReplyListControl implements Command {
 						Integer.parseInt(page));
 		
 		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno), Integer.parseInt(page));
-		
+		System.out.println(list);
 		//list랑 dto같이 넘기기
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);

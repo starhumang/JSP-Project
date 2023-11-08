@@ -63,6 +63,10 @@ public class FrontController extends HttpServlet{
 		map.put("/addReply.do", new AddReplyControl());
 		map.put("/removeReply.do", new RemoveReplyControl());
 		
+		//차트.
+		map.put("/chartForm.do", new ChartFormControl());//차트 보여주는 링크랑 폼 만드는 것
+		map.put("/drawChart.do", new DrawChartControl());//실제 데이터 가져오는 것
+		
 		//아래는 연습용
 //		map.put("/FirstServlet.do", new FirstControl());
 //		map.put("/second.do", new SecondControl());
