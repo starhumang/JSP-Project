@@ -7,7 +7,16 @@
 
 <!-- 전체 댓글 보기 -->
  <select id="replyList" resultType="co.yedam.reply.service.ReplyVO">
-    SELECT * FROM REPLY WHERE BOARD_NO=#{boardNo}
+ <![CDATA[
+  select * from(
+                select /*+INDEX(r reply_pk)*/rownum rn, r.*  
+                from reply r 
+                where r.board_no= #{boardNo}
+                    )a 
+	where a.rn > (#{page} -1) * 5
+	and a.rn <= (#{page}) * 5
+ ]]><!-- 연산자가 나오면 <![CDATA[]]>안에 넣어놔야함 -->
+  
  </select>
   
   <!-- 댓글 하나 보기 -->
@@ -36,6 +45,10 @@
  <delete id="deleteReply" parameterType="int">
  	delete from reply where reply_no =#{replyNo}
  </delete>
+ 
+ <select id="getTotalCnt" resultType="int">
+ 	select count(*) from reply where board_no = #{boardNo}
+ </select>
  
   
 </mapper>

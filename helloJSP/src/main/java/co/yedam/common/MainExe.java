@@ -13,7 +13,7 @@ public class MainExe {
 				DataSourceMybatis.getInstance().openSession(true);
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 		
-		List<ReplyVO> list = mapper.replyList(1);
+		List<ReplyVO> list = mapper.replyList(2,1); //2번글에 첫번째 답글 보겠습니다.
 		list.forEach(vo -> System.out.println(vo));
 		
 	
