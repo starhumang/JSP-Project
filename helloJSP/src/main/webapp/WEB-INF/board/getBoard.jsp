@@ -55,7 +55,7 @@
 
 
 <form action="modifyForm.do" name="myFrm">
-	<input type="hidden" name="bno" value="${bno.boardNo }>">
+	<input type="hidden" name="bno" value="${bno.boardNo }">
 	<table class="table" border="1">
 		<tr>
 			<th>글번호</th>
