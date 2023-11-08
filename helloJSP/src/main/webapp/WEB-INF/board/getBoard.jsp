@@ -1,8 +1,10 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fm" %>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 	
 <!DOCTYPE html>
@@ -50,51 +52,56 @@
 
 </head>
 <body>
-	<%
-	BoardVO vo = (BoardVO) request.getAttribute("bno");
-	%>
+${bno }
 	
 	<form action ="modifyForm.do" name="myFrm">
-	<input type="hidden" name="bno" value="<%=vo.getBoardNo() %>">
+	<input type="hidden" name="bno" value="${bno.boardNo }>">
 		<table class = "table" border="1">
 			<tr>
 			<th>글번호</th>
-			<td class = "boardNo"><%=vo.getBoardNo()%></td>
+			<td class = "boardNo">${bno.boardNo }</td>
 			<th>작성일시</th>
-			<td><%=vo.getWriteDate()%></td>
+			<td><fm:formatDate value="${bno.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"></fm:formatDate></td>
 			</tr>
 			
 			
 			<tr>
 			<th>글제목</th>
-			<td colspan="3"><%=vo.getTitle()%></td>
+			<td colspan="3">${bno.title }</td>
 			</tr>
 			
 			
 			<tr>
-			<td colspan="4"><textarea rows ="5" cols="40" class = "form-control"><%=vo.getContent()%></textarea></td>
+			<td colspan="4"><textarea rows ="5" cols="40" class = "form-control">${bno.content }</textarea></td>
 			</tr>
+			
 			<tr>
 				<th>이미지</th>
-				<td colspan ="3"><img style="align:center" width="80px" src="image/<%=vo.getImage()%>"></td>
+				<td colspan ="3"><img style="align:center" width="80px" src="image/>${bno.image }"></td>
 			</tr>
 	
 			<tr>
 			<th>작성자</th>
-			<td><%=vo.getWriter()%></td>
+			<td>${bno.writer }</td>
 			<th>조회수</th>
-			<td><%=vo.getViewCnt()%></td>
+			<td>${bno.viewCnt }</td>
 			</tr>
 			
 			<tr>
 			<td colspan="4" align="center">
-			<% if(logId != null && logId.equals(vo.getWriter())){ %>
+			<c:choose>
+			
+			<c:when test = "${!empty logId && logId == bno.writer }">
 			<input type="submit" value="수정">
 			<input type="button" value="삭제">
-			<%}else{ %>
+			</c:when>
+			
+			<c:otherwise>
 			<input disabled type="submit" value="수정">
 			<input disabled type="button" value="삭제">
-			<%} %>
+			</c:otherwise>
+			
+			</c:choose>
 			</td>
 			</tr>
 		</table>
@@ -133,10 +140,10 @@
 		
 		//댓글목록.
 		//방법1 
-		let bno = "<%=vo.getBoardNo()%>";
+		let bno = "${bno.boardNo }>";
 		//방법2
 		//bno = document.querySelector('.boardNo').innerHTML;
-		let writer = "<%=logId%>";
+		let writer = "${logId }>";
 		let page = 1;
 		
 function showList(pg = 1){//page라는 값이 없으면 초기값으로 1을 주겠다.
@@ -149,14 +156,14 @@ function showList(pg = 1){//page라는 값이 없으면 초기값으로 1을 주
 		.then(result=> {
 			console.log(result);
 			if(pg < 0){
-// 				pg = Math.ceil(result.dto.total/5);
-// 				showList(pg);
-// 				return;
-				
-				//현아쓰
-				let page = showList(Math.ceil(result.dto.total/5))
+				page = Math.ceil(result.dto.total/5);
 				showList(page);
 				return;
+				
+				/* //현아쓰
+				let page = showList(Math.ceil(result.dto.total/5))
+				showList(page);
+				return; */
 			}
 			result.list.forEach(reply => {
 				let li = makeRow(reply);
@@ -283,4 +290,4 @@ function showList(pg = 1){//page라는 값이 없으면 초기값으로 1을 주
 </script>
 </body>
 </html>
-<%@include file="../layout/footer.jsp"%>
+<jsp:include page="../layout/footer.jsp"></jsp:include>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 <body>
 	<h3>게시글 등록화면</h3>
@@ -14,7 +15,7 @@
 			
 			<tr>
 				<th>작성자</th>
-				<td><input type ="text" readonly name="writer" class = "form-control" value="<%=logId%>"></td>
+				<td><input type ="text" readonly name="writer" class = "form-control" value="${logId }"></td>
 			</tr>
 			
 			<tr>
@@ -36,4 +37,4 @@
 </body>
 </html>
 
-<%@include file="../layout/footer.jsp"%>
+<include page="../layout/footer.jsp"></include>
