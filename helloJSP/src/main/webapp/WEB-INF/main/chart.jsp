@@ -17,8 +17,10 @@
 		  console.log(result);
 		  let dataAry = [['Writer','Cnt']];
 		  result.forEach(item => {
-			  dataAry.push([item.REPLYER, item.CNT])
+			  dataAry.push([item.replyer, item.cnt])//item.~안에 넣는 값은 sql문에 소문자로 적었으면 소문자 그대로 따라가야 한다.(ReplyMapper참고)
 		  })
+		  
+		  //[['writer', 'cnt'], ['m001',12], ['m001',12]] 이런형태(객체타입으로 들어가 있음)
 		  console.log(dataAry)
 		    var data = google.visualization.arrayToDataTable(dataAry);
 		
